@@ -55,5 +55,5 @@ Thumbs.db
 
 #firebase
 /.firebase/*
-./firebase.json. 
 /.firebaserc
+firebase.json

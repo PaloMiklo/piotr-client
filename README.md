@@ -1,6 +1,8 @@
-# PiotrFrontend
+# Piotr Frontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.2 and is a client side application to piotr eshop application.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.2 and is a client side application to Piotr eshop application.
+After a few years, I have decided to rebuild and update the application using the legacy application as a base to build upon.
+If you are interested in the project or the code, feel free to contact me at my [LinkedIn profile](https://www.linkedin.com/in/pavol-miklaš-2a0b6b174/). I am also open to collaborations.
 
 ## Development server
 

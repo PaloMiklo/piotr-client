@@ -1,0 +1,27 @@
+<div *ngIf="form" class="row wrapper">
+  <div class="col-md-8 mx-auto">
+    <div class="contact-content">
+      <form [formGroup]="form" (submit)="loginUser()">
+        <fieldset>
+          <legend>Login</legend>
+          <div class="form-field">
+            <label for="username">User name:</label>
+            <input class="form-control" type="username" name="username" formControlName="username" />
+          </div>
+          <div class="form-field">
+            <label for="password">Password:</label>
+            <input class="form-control" name="password" formControlName="password" [type]="password" />
+          </div>
+          <div class="checkbox" [hidden]="!form.controls.password.value || form.controls.password.value.length === 0">
+            <span *ngIf="show === false">Show Password</span>
+            <span *ngIf="show === true">Hide Password</span>
+            <input type="checkbox" (click)="showHide()" />
+          </div>
+        </fieldset>
+        <div class="form-buttons">
+          <button class="btn btn-dark" type="submit">Login</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

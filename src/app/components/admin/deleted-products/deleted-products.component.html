@@ -1,0 +1,10 @@
+<ul class="row">
+  <li class="product col-md-3" *ngFor="let d of deleted; trackBy: trackByProduct">
+    <img class="img-fluid mx-auto image" src="{{ d.imagePath }}" alt="{{ d.id }}" />
+
+    <div class="product-overlay">
+      <div class="text">{{ d.name }} {{ d.price }}</div>
+    </div>
+  </li>
+</ul>
+<a routerLink="/admin/main" style="text-transform: uppercase">go back</a>

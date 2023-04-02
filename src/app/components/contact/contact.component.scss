@@ -1,0 +1,31 @@
+$color-product-detail-link-social: rgb(182, 182, 182);
+
+.contact-content {
+  .errorMessage {
+    color: red;
+  }
+  .successMessage {
+    color: green;
+  }
+  .error {
+    border: 1px solid red;
+  }
+  h3 {
+    text-transform: uppercase;
+    letter-spacing: 0.2rem;
+    display: flex;
+    justify-content: center;
+  }
+  .dash {
+    width: 5rem;
+    padding: 0.2rem;
+    margin: 1.1rem auto;
+    display: table;
+    background-color: $color-product-detail-link-social;
+  }
+  button {
+    width: 100%;
+    margin: 0.5rem 0rem;
+    text-transform: uppercase;
+  }
+}

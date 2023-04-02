@@ -1,0 +1,29 @@
+$color-product-detail-link-social: rgb(182, 182, 182);
+
+.counter-container {
+  user-select: none;
+  .shopping-cart-summary {
+    &-wrapper {
+      margin-bottom: 0;
+      width: 100%;
+      &-list {
+        padding: 1rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        border-bottom: 1px solid $color-product-detail-link-social;
+        &:last-child {
+          border-bottom: none;
+        }
+      }
+    }
+    &-price-total {
+      font-weight: bold;
+    }
+  }
+  .sum-more-than {
+    margin: 0.9rem 0rem;
+    text-align: center;
+    color: $color-product-detail-link-social;
+  }
+}

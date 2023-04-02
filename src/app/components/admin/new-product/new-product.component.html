@@ -1,0 +1,38 @@
+<div class="row wrapper">
+  <div class="col-md-6 mx-auto">
+    <div class="contact-content">
+      <form [formGroup]="form">
+        <fieldset>
+          <legend>New product</legend>
+          <div class="form-field">
+            <label for="name">Name:</label>
+            <input class="form-control" type="text" name="name" formControlName="name" />
+          </div>
+          <div class="form-field">
+            <label for="price">Price:</label>
+            <input class="form-control" type="number" min="1" step="any" name="price" formControlName="price" />
+          </div>
+          <div class="form-field">
+            <label for="description">Descripiton:</label>
+            <textarea class="form-control" type="comment" rows="4" name="description" formControlName="description"></textarea>
+          </div>
+        </fieldset>
+        <div class="form-buttons d-flex justify-content-center">
+          <button class="btn btn-dark" (click)="createProduct()">add new product</button>
+        </div>
+      </form>
+
+      <div>
+        <form [formGroup]="uploadForm" (ngSubmit)="saveImage()">
+          <div>
+            <input class="form-control-file" type="file" name="image" formControlName="image" (change)="fileSelect($event)" />
+          </div>
+          <div>
+            <button class="btn btn-dark" [disabled]="!form.get('name')" type="submit">upload image</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<a routerLink="/admin/main" style="text-transform: uppercase">go back</a>

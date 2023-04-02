@@ -1,0 +1,209 @@
+$color-product-detail-link-social: rgb(182, 182, 182);
+$color-pure-black: rgb(0, 0, 0);
+$color-pure-white: rgb(255, 255, 255);
+$color-success: rgb(0, 128, 0);
+$color-error: rgb(255, 0, 0);
+
+@mixin p-t {
+  padding-top: 2rem;
+}
+@mixin error_label {
+  color: $color-error;
+}
+@mixin error_input {
+  border: 0.15rem solid $color-error;
+}
+@mixin success_label {
+  color: $color-success;
+}
+@mixin success_input {
+  border: 0.15rem solid $color-success;
+}
+
+.billing {
+  display: none;
+}
+
+.saveBtn {
+  margin-top: 0.5rem;
+}
+
+.free {
+  color: rgb(131, 49, 49);
+}
+
+.checkout-content {
+  padding: 2rem;
+  &-main {
+    @include p-t();
+    .btn[disabled] {
+      opacity: 0.65;
+      cursor: not-allowed;
+    }
+    .has_success_input {
+      @include success_input();
+    }
+    .has_success_label {
+      @include success_label();
+    }
+    .has_error_input {
+      @include error_input();
+    }
+    .has_error_label {
+      @include error_label();
+    }
+
+    .btn {
+      width: 100%;
+      text-transform: uppercase;
+    }
+    .info {
+      color: $color-product-detail-link-social;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+    }
+  }
+  h3 {
+    text-align: center;
+    letter-spacing: 0.2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2rem;
+  }
+  .dash {
+    width: 5rem;
+    padding: 0.2rem;
+    margin: 1.1rem auto;
+    display: table;
+    background-color: $color-product-detail-link-social;
+  }
+  .cart {
+    @include p-t();
+    .bought {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      .cart-description {
+        user-select: none;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        & > li {
+          padding-right: 1rem;
+          &:last-child {
+            padding-right: 0;
+          }
+        }
+        .qxp {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: center;
+          .x {
+            padding: 0 0.5rem;
+          }
+        }
+      }
+      img {
+        display: inline-block;
+        height: 8rem;
+        width: 8rem;
+      }
+    }
+  }
+  .shipping-container {
+    @include p-t();
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .sm {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+    }
+    .form-check {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+      &-input:checked ~ .form-check-div {
+        color: $color-product-detail-link-social;
+      }
+      &-div {
+        width: 100%;
+      }
+    }
+  }
+  .final-confirm-btn-container {
+    @include p-t();
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 0 1.5rem;
+    & > .btn {
+      text-transform: uppercase;
+    }
+  }
+  &-main {
+    .buyer {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      .buyer-info {
+        text-align: start;
+      }
+    }
+    .counter-container {
+      @include p-t();
+      &-summary {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+    .comment-container {
+      @include p-t();
+      padding: 0 1.5rem;
+    }
+    .toCart {
+      @include p-t();
+      padding-bottom: 2rem;
+      text-transform: uppercase;
+      justify-content: center;
+      align-items: center;
+      &:hover {
+        color: $color-product-detail-link-social;
+      }
+    }
+  }
+}
+
+.checkout-container-counter {
+  width: 100%;
+}
+
+@media screen and (max-width: 480px) {
+  .delPadding {
+    padding: 0 0 !important;
+  }
+}
+
+$color-products-hover: rgba(0, 0, 0, 0.61);
+$color-pure-white: rgb(255, 255, 255);
+$color-product-detail-link-social: rgb(182, 182, 182);
+$color-products-hover: rgba(0, 0, 0, 0.61);
+
+.btn {
+  background-color: black;
+  border: black;
+  color: $color-pure-white;
+
+  &:hover {
+    background-color: $color-products-hover;
+  }
+}

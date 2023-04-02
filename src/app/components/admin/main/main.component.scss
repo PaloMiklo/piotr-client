@@ -1,0 +1,16 @@
+$color-header-link: rgb(182, 182, 182);
+$color-header-link-hover: rgba(161, 161, 161, 0.474);
+$color-header-link-active: #696969;
+
+.btn {
+  width: 100%;
+  margin-top: 0.2rem;
+  &:hover {
+    background-color: $color-header-link-hover;
+    color: rgb(0, 0, 0);
+  }
+  &:active {
+    background-color: $color-header-link-active !important;
+    border: 0px !important;
+  }
+}

@@ -1,0 +1,65 @@
+<form *ngIf="!baseSubmitted" #customer="ngForm" (ngSubmit)="base(customer.value)" [ngClass]="!customer.pristine ? 'was-validated' : null">
+  <div class="form-group">
+    <input class="form-control m-1" type="text" name="firstname" placeholder="first name" id="firstname" ngModel required />
+    <input class="form-control m-1" type="lastname" name="lastname" placeholder="last name" id="lastname" ngModel required />
+    <input class="form-control m-1" type="email" name="email" placeholder="email" id="email" ngModel required />
+
+    <span class="invalid-feedback">Customer credentials are required!</span>
+    <input class="btn m-1 d-block" type="submit" value="submit" />
+  </div>
+</form>
+<button *ngIf="baseSubmitted" (click)="base(customer)" class="btn d-block m-1 btn-block">change customer info</button>
+
+<hr />
+<form
+  *ngIf="!shippingSubmitted"
+  #shippingAddress="ngForm"
+  (ngSubmit)="setShippingAddress(shippingAddress.value)"
+  [ngClass]="!shippingAddress.pristine ? 'was-validated' : null"
+>
+  <div class="form-group">
+    <label>Shipping address</label>
+    <input class="form-control m-1" type="text" name="street_s" placeholder="street_s" id="street_s" ngModel required />
+    <input class="form-control m-1" type="text" name="houseNo_s" placeholder="houseNo_s" id="houseNo_s" ngModel required />
+    <input class="form-control m-1" type="text" name="zip_s" placeholder="zip_s" id="zip_s" ngModel required />
+    <input class="form-control m-1" type="text" name="city_s" placeholder="city_s" id="city_s" ngModel required />
+    <select required class="form-control m-1" type="text" name="country_s" placeholder="country_s" id="country_s" ngModel required>
+      <option value="" hidden required>country_s</option>
+      <option *ngFor="let country of countries; trackBy: trackByCountry">{{ country }}</option>
+    </select>
+    <span class="invalid-feedback">Customer credentials are required!</span>
+    <input class="btn btn-primary m-1 d-block" type="submit" value="submit" />
+  </div>
+</form>
+<button *ngIf="shippingSubmitted" (click)="setShippingAddress(shippingAddress)" class="btn d-block m-1 btn-block">change shipping address</button>
+
+<div class="form-check m-3">
+  <input #shippingBilling class="form-check-input" type="checkbox" id="shippingBilling" value="onlyShipping" (change)="address()" required />
+  <label class="form-check-label" for="shippingBilling"> Shipping address is not the same as billing address </label>
+</div>
+
+<hr />
+<form
+  *ngIf="!justShippingAddress"
+  [hidden]="billingSubmitted"
+  #billingAddress="ngForm"
+  (ngSubmit)="setBillingAddress(billingAddress.value)"
+  [ngClass]="!billingAddress.pristine ? 'was-validated' : null"
+>
+  <div class="form-group">
+    <label>Billing address</label>
+    <input class="form-control m-1" type="text" name="street_b" placeholder="street_b" id="street_b" ngModel required />
+    <input class="form-control m-1" type="text" name="houseNo_b" placeholder="houseNo_b" id="houseNo_b" ngModel required />
+    <input class="form-control m-1" type="text" name="zip_b" placeholder="zip_b" id="zip_b" ngModel required />
+    <input class="form-control m-1" type="text" name="city_b" placeholder="city_b" id="city_b" ngModel required />
+    <select required class="form-control m-1" type="text" name="country_b" placeholder="country_b" id="country_b" ngModel required>
+      <option value="" hidden required>country_b</option>
+      <option *ngFor="let c of countries">{{ c }}</option>
+    </select>
+    <span class="invalid-feedback">Customer credentials are required!</span>
+    <input class="btn btn-primary m-1 d-block" type="submit" value="submit" />
+  </div>
+</form>
+<button *ngIf="billingSubmitted && !justShippingAddress" (click)="setBillingAddress(billingAddress)" class="btn d-block m-1 btn-block">
+  change billing address
+</button>

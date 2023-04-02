@@ -1,0 +1,17 @@
+<div class="row d-flex justify-content-center mt-3">
+  <div class="input-group col-md-4">
+    <input class="form-control py-2" type="search" value="search" id="example-search-input" [(ngModel)]="searchTerm" />
+  </div>
+</div>
+
+<ul class="row">
+  <li class="product col-md-3" *ngFor="let filtered of filteredProducts; trackBy: trackByProduct" (click)="deleteProduct(filtered)">
+    <img class="img-fluid mx-auto image" src="{{ filtered.imagePath }}" alt="{{ filtered.id }}" />
+
+    <div class="product-overlay">
+      <div class="text">delete</div>
+    </div>
+  </li>
+</ul>
+
+<a routerLink="/admin/main" style="text-transform: uppercase">go back</a>

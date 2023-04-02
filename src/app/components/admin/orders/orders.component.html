@@ -1,0 +1,7 @@
+<ul>
+  <li *ngFor="let order of orders; trackBy: trackByOrder">
+    {{ order | json }}
+    <hr />
+  </li>
+</ul>
+<a routerLink="/admin/main" style="text-transform: uppercase">go back</a>

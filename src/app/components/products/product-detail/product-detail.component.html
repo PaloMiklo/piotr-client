@@ -1,0 +1,43 @@
+<div class="product-detail-content">
+  <div class="row" *ngIf="activatedProductLoaded">
+    <div class="col-lg-4 col-md-12">
+      <div class="product-detail-content-description">
+        <h3 class="display-4">{{ activatedProduct.name }}</h3>
+        <span class="dash"></span>
+        <p class="product-detail-content-price">
+          <span class="price">{{ activatedProduct.price | currency : 'EUR' }}</span>
+        </p>
+        <p class="product-about">{{ activatedProduct.description }}</p>
+
+        <button class="btn btn-dark btn-lg" (click)="addProductToCart()">
+          <span><i class="fa fa-shopping-basket" aria-hidden="true"></i> Add to Cart!</span>
+        </button>
+
+        <div class="row">
+          <div class="btn-social btn-group-vertical mx-auto">
+            <button class="btn-social-share btn btn-light">
+              <i class="fa fa-facebook-square"></i>
+              <a href="#"> Share</a>
+            </button>
+            <button class="btn-social-share btn btn-light">
+              <i class="fa fa-facebook-square"></i>
+              <a href="#"> Share</a>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-8 col-md-12">
+      <div class="product-detail-content-image">
+        <img class="img-fluid product-img" src="{{ activatedProduct.imagePath }}" data-toggle="modal" (click)="open(mymodal)" />
+      </div>
+    </div>
+
+    <ng-template #mymodal let-modal>
+      <div class="d-flex flex-direction-row justify-content-center">
+        <img src="{{ activatedProduct.imagePath }}" alt="" />
+      </div>
+    </ng-template>
+  </div>
+</div>

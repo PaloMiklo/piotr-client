@@ -1,0 +1,28 @@
+<div class="counter-container">
+  <li class="shopping-cart-summary-wrapper-list">
+    Items ({{ cart.itemCount }})
+    <span class="shopping-cart-summary-price">
+      <span class="price">{{ cart.cartPrice - cart.deliveryPrice | currency : 'EUR' }}</span>
+    </span>
+  </li>
+
+  <li class="shopping-cart-summary-wrapper-list">
+    Shipping
+    <div class="shopping-cart-summary-price-shipping">
+      <span class="currency">{{ cart.deliveryPrice | currency : 'EUR' }} </span>
+    </div>
+  </li>
+
+  <li class="shopping-cart-summary-wrapper-list">
+    <b>Total</b>
+    <div class="shopping-cart-summary-price-total">
+      <span class="currency"
+        ><b>{{ cart.cartPrice | currency : 'EUR' }}</b>
+      </span>
+    </div>
+  </li>
+
+  <div class="sum-more-than">
+    <span *ngIf="cart.cartPrice > config.get('freeShipping')">Shipping free!</span>
+  </div>
+</div>

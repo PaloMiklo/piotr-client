@@ -1,0 +1,19 @@
+<div class="shopping-cart-products">
+  <div class="col-lg-4" style="justify-content: inherit">
+    <a class="remove-item removeQuery" (click)="removeViaX(cartLine)">
+      <i class="fa fa-times" aria-hidden="true"></i>
+    </a>
+
+    <img class="hoverable" (click)="previewProduct(cartLine.product)" src="{{ cartLine.product.imagePath }}" />
+  </div>
+
+  <div class="col-lg-8" style="align-items: center">
+    <span class="hoverable" (click)="previewProduct(cartLine.product)" style="padding-right: 1rem">{{ cartLine.product.name }}</span>
+    <div class="shopping-cart-products-quantity-value">
+      <button type="button" class="cart-decrease-button" (click)="decrement(cartLine)"><i class="fa fa-minus" aria-hidden="true"></i></button>
+      <span class="cart-list-quantity-content">{{ cartLine.amount }}</span>
+      <button type="button" class="cart-increase-button" (click)="increment(cartLine)"><i class="fa fa-plus" aria-hidden="true"></i></button>
+    </div>
+    <span (click)="previewProduct(cartLine.product)" class="hoverable price removeQuery">{{ cartLine.product.price }}€</span>
+  </div>
+</div>

@@ -1,0 +1,55 @@
+<div *ngIf="!updating; else updatingContent">
+  <div class="row d-flex justify-content-center mt-3 mb-3">
+    <div class="input-group col-md-4">
+      <input class="form-control py-2" type="search" placeholder="Search" id="example-search-input" [formControl]="fastSearch" />
+    </div>
+  </div>
+
+  <ul class="row">
+    <li class="product col-md-3" *ngFor="let product of filteredProducts; trackBy: trackByProduct" (click)="switchMode()">
+      <img class="img-fluid mx-auto image" src="{{ product.imagePath }}" alt="{{ product.id }}" />
+
+      <div class="product-overlay">
+        <div class="text">update</div>
+      </div>
+    </li>
+  </ul>
+
+  <a routerLink="/admin/main" style="text-transform: uppercase">go back</a>
+</div>
+<ng-template #updatingContent>
+  <form>
+    <div class="form-group">
+      <label for="id"></label>
+      <input type="text" class="form-control" id="id" placeholder="id" [(ngModel)]="productToUpdate.id" name="id" disabled />
+    </div>
+    <div class="form-group">
+      <label for="name"></label>
+      <input type="text" class="form-control" id="name" placeholder="name" [(ngModel)]="productToUpdate.name" name="name" />
+    </div>
+    <div class="form-group">
+      <label for="imagePath"></label>
+      <input type="text" class="form-control" id="imagePath" placeholder="image path" [(ngModel)]="productToUpdate.imagePath" name="imagePath" />
+    </div>
+    <div class="form-group">
+      <label for="quantity"></label>
+      <input type="text" class="form-control" id="quantity" placeholder="quantity" [(ngModel)]="productToUpdate.quantity" name="quantity" />
+    </div>
+    <div class="form-group">
+      <label for="price"></label>
+      <input type="text" class="form-control" id="price" placeholder="price" [(ngModel)]="productToUpdate.price" name="price" />
+    </div>
+    <div class="form-group">
+      <label for="description"></label>
+      <input
+        type="text"
+        class="form-control"
+        id="description"
+        placeholder="description"
+        [(ngModel)]="productToUpdate.description"
+        name="description"
+      />
+    </div>
+    <button class="btn btn-primary" (click)="updateProduct()">Submit</button>
+  </form>
+</ng-template>

@@ -1,0 +1,41 @@
+<div class="cart-content">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h3 class="display-4 d-flex" style="justify-content: center">Cart</h3>
+        <span class="dash"></span>
+      </div>
+
+      <div class="col-md-12">
+        <div class="shopping-cart empty-min-height">
+          <div class="row" *ngIf="cartLines.length === 0" style="width: 100%; margin-left: 0.8rem">
+            <div class="row mx-auto" style="width: 100%" [ngClass]="'ml'">
+              <div class="col-md-12">
+                <div class="alert-container">
+                  <div class="alert alert-dark col-md-12" role="alert">
+                    <span>CART IS EMPTY <i class="fa fa-frown-o" aria-hidden="true"></i></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="shopping-cart-container-bought">
+                <app-list *ngFor="let cartLine of cartLines; trackBy: trackByFn" [cartLine]="cartLine" (editedCartLines)="updateCartLines()">
+                </app-list>
+              </div>
+            </div>
+
+            <div class="col-md-12">
+              <div class="shopping-cart-container-summary fc float-md-right" *ngIf="cartLines.length !== 0">
+                <app-summary (editedCartLines)="updateCartLines()"></app-summary>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,46 @@
+<div *ngIf="productsReady" class="container">
+  <div class="row" [@fadefaster]>
+    <div class="products">
+      <div class="col-sm-12 col-lg-3 products-list" *ngFor="let product of products; trackBy: trackByProduct">
+        <ul>
+          <li>
+            <img class="img-fluid mx-auto" src="{{ product.imagePath }}" alt="" />
+            <a (click)="onActivate(product)">
+              <div class="products-overlay">
+                <div class="product-info">
+                  <span class="product-info-name">{{ product.name }}</span>
+                  <span class="dash"></span>
+                  <p class="product-info-price">
+                    <span class="price">{{ product.price | currency : 'EUR' }}</span>
+                  </p>
+                </div>
+              </div>
+            </a>
+            <div class="buttons">
+              <button class="btn mw-100" (click)="addProductIntoCart(product)">
+                <i class="fa fa-shopping-basket" aria-hidden="true"></i><span> buy now</span>
+              </button>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="form-inline float-left mr-1 m-3">
+  <select class="form-control btn-outline-secondary" [value]="'' + productsPerPage" (change)="changePageSize($event)">
+    <option *ngFor="let option of pageOptions" class="opt" value="{{ option.value }}">{{ option.text }}</option>
+  </select>
+</div>
+
+<div class="btn-group float-right m-3">
+  <button
+    *counter="let page of pageCount"
+    (click)="changePage(page)"
+    class="btn btn-outline-secondary"
+    [ngClass]="{ activePage: page == selectedPage }"
+  >
+    {{ page }}
+  </button>
+</div>

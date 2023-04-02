@@ -1,0 +1,14 @@
+<div class="shopping-cart-summary mq-mr-min-md mq-mr-min-sm-max-md mq-pr-max-sm mq-pr-max-smart">
+  <ul class="shopping-cart-summary-wrapper" style="padding: 0 2rem">
+    <app-counter></app-counter>
+
+    <li class="shopping-cart-summary-wrapper-list-buttons mx-auto">
+      <button class="btn" (click)="clear()"><i class="fa fa-trash" aria-hidden="true"></i> empty</button>
+      <button class="btn" routerLink="../checkout"><i class="fa fa-shopping-basket" aria-hidden="true"></i> next</button>
+    </li>
+
+    <div class="continue">
+      <a routerLink="">continue shopping</a>
+    </div>
+  </ul>
+</div>

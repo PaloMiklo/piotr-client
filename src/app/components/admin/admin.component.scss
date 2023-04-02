@@ -1,0 +1,57 @@
+$color-admin-hover: rgba(161, 161, 161, 0.474);
+
+.wrapper {
+  .contact-content {
+    min-height: 30rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    margin: 2rem 0rem;
+    legend {
+      text-align: center;
+    }
+    .form-field {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 0.3rem;
+      label {
+        margin: 0.5rem;
+      }
+      .form-control {
+        width: 20rem;
+      }
+    }
+    .checkbox {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      align-items: center;
+      padding: 0.3rem;
+      text-align: end;
+      input {
+        margin-left: 0.5rem;
+      }
+    }
+  }
+  ::selection {
+    color: none;
+    background: none;
+  }
+}
+.form-buttons {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  .btn {
+    outline-width: 0;
+    margin: 0.5rem;
+    width: 18rem !important;
+    &:hover {
+      background-color: $color-admin-hover;
+      outline-width: 0;
+    }
+  }
+}

@@ -1,0 +1,81 @@
+<div class="contact-content">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h3 class="display-4">Contact</h3>
+        <span class="dash"></span>
+      </div>
+      <form [formGroup]="form" (submit)="sendMail()" class="col-md-10 mx-auto">
+        <fieldset>
+          <div class="form-field">
+            <label for="mail">Mail:</label>
+            <input
+              class="form-control"
+              type="text"
+              name="mail"
+              formControlName="mail"
+              placeholder="piotr@piotr.com"
+              required
+              id="mail"
+              [class.error]="form.controls.mail.invalid && (form.controls.mail.dirty || form.controls.mail.touched)"
+            />
+            <div *ngIf="form.controls.mail.invalid && (form.controls.mail.dirty || form.controls.mail.touched)" class="errorMessage">
+              Valid mail is required.
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="name">Name:</label>
+            <input
+              class="form-control"
+              type="text"
+              name="name"
+              formControlName="name"
+              placeholder="Peter"
+              required
+              [class.error]="form.controls.name.invalid && (form.controls.name.dirty || form.controls.name.touched)"
+            />
+            <div *ngIf="form.controls.name.invalid && (form.controls.name.dirty || form.controls.name.touched)" class="errorMessage">
+              Name is required.
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="subject">Subject:</label>
+            <input
+              class="form-control"
+              type="text"
+              min="1"
+              name="subject"
+              formControlName="subject"
+              placeholder="Ustinov"
+              required
+              [class.error]="form.controls.subject.invalid && (form.controls.subject.dirty || form.controls.subject.touched)"
+            />
+            <div *ngIf="form.controls.subject.invalid && (form.controls.subject.dirty || form.controls.subject.touched)" class="errorMessage">
+              Subject is required.
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="message">Message:</label>
+            <textarea
+              class="form-control"
+              type="comment"
+              rows="10"
+              name="message"
+              formControlName="message"
+              placeholder="Type a message!"
+              required
+              [class.error]="form.controls.message.invalid && (form.controls.message.dirty || form.controls.message.touched)"
+            ></textarea>
+            <div *ngIf="form.controls.message.invalid && (form.controls.message.dirty || form.controls.message.touched)" class="errorMessage">
+              Message is required.
+            </div>
+            <div *ngIf="form.valid && (form.controls.message.dirty || form.controls.message.touched)" class="successMessage">Form is valid now!</div>
+          </div>
+        </fieldset>
+        <div class="form-buttons d-flex justify-content-center">
+          <button class="btn btn-dark" type="submit" [disabled]="!form.valid">send</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

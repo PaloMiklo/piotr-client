@@ -1,0 +1,75 @@
+$color-social-facebook: hsl(221, 44%, 41%);
+$color-social-instagram: #8a49a1;
+$color-social-hover: rgba(161, 161, 161, 0.474);
+$color-footer-link: rgb(182, 182, 182);
+$color-footer-link-hover: rgba(161, 161, 161, 0.474);
+$color-footer-link-active: #696969;
+
+.footer {
+  .admin {
+    color: $color-footer-link;
+    text-transform: uppercase;
+    font-size: 1rem;
+    letter-spacing: 1rem;
+
+    &:hover {
+      color: $color-footer-link-hover;
+    }
+  }
+  &-social-icons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-size: 4.8rem;
+    margin-bottom: 0;
+  }
+
+  i {
+    &:hover {
+      color: $color-social-hover;
+    }
+  }
+
+  .fa-facebook-square {
+    margin-right: 2rem;
+    color: $color-social-facebook;
+
+    &:hover {
+      -webkit-transform: scale(1.3);
+      -ms-transform: scale(1.3);
+      transform: scale(1.3);
+    }
+  }
+
+  .fa-instagram {
+    margin-right: 2rem;
+    color: $color-social-instagram;
+
+    &:hover {
+      -webkit-transform: scale(1.3);
+      -ms-transform: scale(1.3);
+      transform: scale(1.3);
+    }
+  }
+  .fa-twitter {
+    &:hover {
+      -webkit-transform: scale(1.3);
+      -ms-transform: scale(1.3);
+      transform: scale(1.3);
+    }
+  }
+  .row {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .smallerSocials {
+    font-size: 3rem;
+  }
+  .smallerAdmin {
+    font-size: 0.8rem !important;
+    letter-spacing: 0.6rem !important;
+  }
+}

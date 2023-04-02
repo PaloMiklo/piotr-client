@@ -1,0 +1,14 @@
+$color-products-hover: rgba(0, 0, 0, 0.61);
+$color-pure-white: rgb(255, 255, 255);
+$color-product-detail-link-social: rgb(182, 182, 182);
+$color-products-hover: rgba(0, 0, 0, 0.61);
+
+.btn {
+  background-color: black;
+  border: black;
+  color: $color-pure-white;
+
+  &:hover {
+    background-color: $color-products-hover;
+  }
+}

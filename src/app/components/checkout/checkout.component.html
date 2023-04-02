@@ -1,0 +1,48 @@
+<app-counter></app-counter>
+<app-customer-data
+  (baseSubmittedToggler)="submitBase()"
+  (shippingSubmittedToggler)="shipping()"
+  (bilingSubmittedToggler)="billing()"
+></app-customer-data>
+
+<div class="row m-3 d-block">
+  <label class="">Choose delivery option:</label>
+  <div *ngFor="let option of deliveryOptions; trackBy: trackByDeliveryOption" class="form-check">
+    <label class="form-check-label">
+      <input
+        type="radio"
+        class="form-check-input"
+        (change)="setDelivery(option)"
+        value="{{ option.id }}"
+        name="method"
+        [checked]="option.id === (optionId ?? 0)"
+        id="{{ option.id }}"
+      />{{ option.name }}
+    </label>
+    <span class="pull-right" for="1">{{ option.price | currency : 'EUR' }}</span>
+  </div>
+</div>
+
+<hr />
+<div [formGroup]="form" (submit)="comment()" *ngIf="!commentSubmitted">
+  <div class="form-field">
+    <label for="message">Message:</label>
+    <textarea
+      class="form-control"
+      type="comment"
+      rows="10"
+      name="message"
+      formControlName="message"
+      placeholder="Type a message"
+      required
+      [class.error]="form.controls.message.invalid && (form.controls.message.dirty || form.controls.message.touched)"
+    ></textarea>
+  </div>
+  <button class="btn btn-dark m-1" type="submit" (click)="comment()">submit</button>
+</div>
+<button *ngIf="commentSubmitted" (click)="comment()" class="btn d-block m-1 btn-block">change comment</button>
+
+<div class="center d-flex flex-direction-row justify-content-center p-5">
+  <button class="btn btn m-1" routerLink="/cart">go back</button>
+  <button class="btn btn m-1" [disabled]="!(baseSubmitted && shippingSubmitted)" (click)="sendOrder()">make order</button>
+</div>

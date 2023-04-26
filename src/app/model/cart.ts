@@ -5,6 +5,7 @@ import { notNullNorUndefined } from 'src/app/shared/util';
 import { CartLine } from './cart-line';
 import { IDeliveryOption } from './delivery';
 import { Product } from './product';
+import { TCartStorage } from './storage';
 
 @Injectable()
 export class Cart {
@@ -36,7 +37,7 @@ export class Cart {
     this.recalculate();
   };
 
-  public readonly updateCart = (source: Cart) => Object.assign(this, { ...source });
+  public readonly updateCart = (source: TCartStorage) => Object.assign(this, { ...source });
 
   public readonly updateQuantity = (product: Product, quantity: number): void => {
     const line = this.lines.find((line: CartLine) => line.product.id === product.id);

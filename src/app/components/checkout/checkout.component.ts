@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable, of, takeUntil, tap } from 'rxjs';
 import { IBillingAddress, IShippingAddress } from 'src/app/model/address';
@@ -7,6 +12,7 @@ import { IConfig } from 'src/app/model/config';
 import { ICustomer } from 'src/app/model/customer';
 import { IDeliveryOption } from 'src/app/model/delivery';
 import { Order } from 'src/app/model/order';
+import { TCartStorage } from 'src/app/model/storage';
 import { ConfigService } from 'src/app/service/config.service';
 import { EmptyClass } from 'src/app/shared/mixin/base';
 import { TrackByDeliveryOption } from 'src/app/shared/mixin/track-by/delivery-option';
@@ -19,7 +25,10 @@ import { StorageService } from '../../service/storage.service';
   styleUrls: ['./checkout.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CheckoutComponent extends TrackByDeliveryOption(UnsubscribeMixin(EmptyClass)) implements OnInit, OnDestroy {
+export class CheckoutComponent
+  extends TrackByDeliveryOption(UnsubscribeMixin(EmptyClass))
+  implements OnInit, OnDestroy
+{
   public baseSubmitted = false;
   public shippingSubmitted = false;
   public bilingSubmitted = false;
@@ -35,7 +44,14 @@ export class CheckoutComponent extends TrackByDeliveryOption(UnsubscribeMixin(Em
     private readonly _configService: ConfigService
   ) {
     super();
-    this._configService.ready$.pipe(tap((conf: IConfig) => (this.deliveryOptions = conf.delivery), takeUntil(this.unsubscribe$))).subscribe();
+    this._configService.ready$
+      .pipe(
+        tap(
+          (conf: IConfig) => (this.deliveryOptions = conf.delivery),
+          takeUntil(this.unsubscribe$)
+        )
+      )
+      .subscribe();
   }
 
   ngOnInit(): void {
@@ -49,7 +65,7 @@ export class CheckoutComponent extends TrackByDeliveryOption(UnsubscribeMixin(Em
 
   private readonly _checkDeliveryMethod = (): void => {
     const currMethod = this._storage.getDeliveryMethod();
-    this.optionId ??= +currMethod ?? 0;
+    this.optionId ??= +currMethod.id ?? 0;
   };
 
   public readonly setDelivery = (option: IDeliveryOption): void => {
@@ -62,11 +78,14 @@ export class CheckoutComponent extends TrackByDeliveryOption(UnsubscribeMixin(Em
     this._storage.storeDeliveryMethod(this.optionId);
   };
 
-  public readonly submitBase = (): boolean => (this.baseSubmitted = !this.baseSubmitted);
+  public readonly submitBase = (): boolean =>
+    (this.baseSubmitted = !this.baseSubmitted);
 
-  public readonly shipping = (): boolean => (this.shippingSubmitted = !this.shippingSubmitted);
+  public readonly shipping = (): boolean =>
+    (this.shippingSubmitted = !this.shippingSubmitted);
 
-  public readonly billing = (): boolean => (this.bilingSubmitted = !this.bilingSubmitted);
+  public readonly billing = (): boolean =>
+    (this.bilingSubmitted = !this.bilingSubmitted);
 
   public readonly comment = (): void => {
     this.commentSubmitted = !this.commentSubmitted;
@@ -74,7 +93,15 @@ export class CheckoutComponent extends TrackByDeliveryOption(UnsubscribeMixin(Em
   };
 
   public readonly sendOrder$ = (): Observable<Order> => {
-    const [cart, customer, shipping, billing, comment, datetime, deliveryOption] = [
+    const [
+      cart,
+      customer,
+      shipping,
+      billing,
+      comment,
+      datetime,
+      deliveryOption,
+    ] = [
       this._storage.getCart(),
       this._storage.getCustomer(),
       this._storage.getShipping(),
@@ -82,9 +109,24 @@ export class CheckoutComponent extends TrackByDeliveryOption(UnsubscribeMixin(Em
       this._storage.getComment(),
       new Date().toISOString(),
       this._storage.getDeliveryMethod(),
-    ].map((it: string) => JSON.parse(it ?? '')) as [Cart, ICustomer, IShippingAddress, IBillingAddress, string, string, IDeliveryOption];
+    ].map((it: string) => JSON.parse(it ?? '')) as [
+      TCartStorage,
+      ICustomer,
+      IShippingAddress,
+      IBillingAddress,
+      string,
+      string,
+      IDeliveryOption
+    ];
 
-    const order = new Order(Object.assign({}, cart, deliveryOption), customer, shipping, billing, datetime, comment);
+    const order = new Order(
+      Object.assign({}, cart, deliveryOption),
+      customer,
+      shipping,
+      billing,
+      datetime,
+      comment
+    );
 
     return of(order).pipe(
       tap(() => {

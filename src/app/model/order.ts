@@ -1,10 +1,10 @@
 import { IBillingAddress, IShippingAddress } from './address';
-import { Cart } from './cart';
 import { ICustomer } from './customer';
+import { TCartStorage } from './storage';
 
 export class Order {
   constructor(
-    public products: Cart,
+    public products: TCartStorage,
     public customer: ICustomer,
     public shipping: IShippingAddress,
     public billing: IBillingAddress,

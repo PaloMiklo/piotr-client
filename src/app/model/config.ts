@@ -14,6 +14,7 @@ export interface IConfig {
   perPageDefault: number;
   pageOptions: IPageOption[];
   countries: string[];
+  storageExpiration: string;
 }
 
 export interface IMocks {
@@ -39,6 +40,7 @@ export enum ConfigKeys {
   PER_PAGE_DEFAULT = 'perPageDefault',
   PAGE_OPTIONS = 'pageOptions',
   COUNTRIES = 'countries',
+  STORAGE_EXPIRATION = 'storageExpiration',
 }
 
 export enum MocksKeys {

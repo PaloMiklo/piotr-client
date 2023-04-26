@@ -2,6 +2,7 @@ import { DatePipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { AlertService } from './core/alert/service/alert.service';
+import { StorageService } from './service/storage.service';
 
 @Component({
   selector: 'app-root',
@@ -10,10 +11,22 @@ import { AlertService } from './core/alert/service/alert.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements OnInit {
-  constructor(private readonly _alert: AlertService, private readonly _datePipe: DatePipe) {}
+  constructor(
+    private readonly _datePipe: DatePipe,
+    private readonly _alert: AlertService,
+    private readonly _storage: StorageService
+  ) {
+    this._storage.clearItemsWithExpirations();
+    this._storage.clearItemsWithoutExpirations();
+  }
 
   ngOnInit(): void {
-    console.log(`${this._datePipe.transform(environment.buildDate, 'dd.MM.yyyy HH:mm:ss')}`);
+    console.log(
+      `${this._datePipe.transform(
+        environment.buildDate,
+        'dd.MM.yyyy HH:mm:ss'
+      )}`
+    );
 
     this._alert.info(`Hello,\n
 

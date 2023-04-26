@@ -18,7 +18,7 @@ export class CounterComponent extends UnsubscribeMixin(EmptyClass) implements On
     super();
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this._refreshCart();
     this._shopping.amountChanged$
       .pipe(

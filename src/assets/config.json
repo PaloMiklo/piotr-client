@@ -247,6 +247,7 @@
       "text": "32 per Page"
     }
   ],
+  "storageExpiration": "24 * 60 * 60 * 1000",
   "countries": [
     "Afghanistan",
     "Albania  ",

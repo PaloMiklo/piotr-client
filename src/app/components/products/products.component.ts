@@ -42,7 +42,8 @@ export class ProductsComponent extends TrackByProduct(UnsubscribeMixin(EmptyClas
       .pipe(
         tap((conf: IConfig) => {
           this.productsPerPage = this._storage.getPerPage() || this._config.get(ConfigKeys.PER_PAGE_DEFAULT);
-          this.selectedPage = +this._storage.getSelectedPage() ?? 1;
+          this.selectedPage = +this._storage.getSelectedPage() > 0 ? +this._storage.getSelectedPage() : 1;
+          this._storage.storeSelectedPage(this.selectedPage);
           this.pageOptions = conf.pageOptions ?? PAGE_OPTIONS_DEFAULT;
           this.productsReady = true;
         }),
@@ -68,6 +69,7 @@ export class ProductsComponent extends TrackByProduct(UnsubscribeMixin(EmptyClas
   public readonly changePage = (currPage = 1): void => {
     this._storage.storeSelectedPage(currPage);
     this.selectedPage = currPage;
+    console.log('xxx');
   };
 
   public readonly changePageSize = (event: Event): void => {

@@ -31,7 +31,7 @@ export class ShoppingService {
   public readonly retrieveCart = (): Cart => {
     const cart = new Cart();
     const storedCart = this._storage.getCart();
-    storedCart && cart.updateCart(JSON.parse(storedCart));
+    storedCart && cart.updateCart(storedCart);
     return cart;
   };
 
